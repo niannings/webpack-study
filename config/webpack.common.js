@@ -10,13 +10,20 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-        title: '生产环境'
+        title: '代码分离'
     })
   ],
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/',
     path: path.resolve(__dirname, '../dist')
   },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all'
+  //   }
+  // },
   module: {
       rules: [
         {

@@ -1,29 +1,28 @@
-import { chunk } from 'lodash';
-import { cube } from './math';
-// import txt from './message.txt';
-import md from './test.md';
-import './style.css';
+function getComponent() {
+    return import(/* webpackChunkName: "lodash" */ 'lodash')
+        .then(_ => {
+            const element = document.createElement('div');
+            const btn = document.createElement('button');
 
-console.log(md);
+            btn.textContent = '点击加载print.js';
+            btn.onclick = e => import(/* webpackChunkName: "print" */ './print')
+                .then(module => {
+                    const print = module.default
 
-function component() {
-    var element = document.createElement('pre');
-    var test = document.createElement('div');
+                    print();
+                })
 
-    test.innerHTML = md;
-  
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    element.innerHTML = [
-        'Hello World',
-        '5 cube is equal to ' + cube(5)
-    ].join('\n\n');
+            element.innerHTML = _.join(['Hello', 'Webpack', ' ']);
+            element.appendChild(btn);
 
-    element.append(test);
-
-    return element;
+            return element;
+        })
+        .catch(error => 'An error occurred while loading the component');
 }
   
-document.body.appendChild(component());
+getComponent().then(component => {
+    document.body.appendChild(component);
+});
 
 // if (module.hot) {
 //     module.hot.accept('./print.js', function() {

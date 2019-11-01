@@ -8,7 +8,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
     "watch": "webpack --watch",
-    "build": "webpack --config config/webpack.prod.js"
+    "build": "webpack --config config/webpack.prod.js",
+    "analysis:data": "webpack --profile --json > stats.json",
+    "analysis:start": "npm run analysis:data && webpack-bundle-analyzer stats.json",
+    "analysis:data-win": "webpack --profile --json | Out-file 'stats.json' -Encoding OEM",
+    "analysis:start-win": "npm run analysis:data-win && webpack-bundle-analyzer stats.json",
+    "viewProd": "npx http-server dist"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +32,7 @@
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"
