@@ -10,20 +10,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-        title: '代码分离'
+        title: '缓存'
     })
   ],
-  output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    publicPath: '/',
-    path: path.resolve(__dirname, '../dist')
-  },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all'
-  //   }
-  // },
   module: {
       rules: [
         {

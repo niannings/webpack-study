@@ -10,7 +10,7 @@
     "watch": "webpack --watch",
     "build": "webpack --config config/webpack.prod.js",
     "analysis:data": "webpack --profile --json > stats.json",
-    "analysis:start": "npm run analysis:data && webpack-bundle-analyzer stats.json",
+    "analysis:start": "webpack-bundle-analyzer stats.json",
     "analysis:data-win": "webpack --profile --json | Out-file 'stats.json' -Encoding OEM",
     "analysis:start-win": "npm run analysis:data-win && webpack-bundle-analyzer stats.json",
     "viewProd": "npx http-server dist"
